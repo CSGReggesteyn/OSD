@@ -42,7 +42,7 @@ Do {
             iex (irm az.osdcloud.com)
         }
         4 {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudUpdateMenu.ps1'
+            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1'
         }
         5 {
             Clear-Host
