@@ -1,5 +1,5 @@
 ### Getting Windows versions and language opties from "Start-OSDCloudGUI.json"
-$json = Invoke-WebRequest 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/Update/Automate/Start-OSDCloudGUI.json' | ConvertFrom-Json
+$json = Invoke-WebRequest 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/Update/Automate/Start-OSDCloudGUI.json' | ConvertFrom-Json
 $WinVer = $json | ForEach-Object { $_.OSNameValues }
 $winVer = $WinVer.Replace(" x64", "")
 $WinLang = $json | ForEach-Object { $_.OSLanguageValues }
@@ -24,7 +24,7 @@ Write-Host " Q.) Back"
 $WinVerSelection = Read-Host " Select an option and press Enter"
 
 if ($WinVerSelection -eq 'Q') { 
-     Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudUpdateMenu.ps1' 
+     Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1' 
 } Else { 
 Clear-Host
 Write-Host " ***************************"
@@ -46,7 +46,7 @@ Write-Host " Q.) Back"
 $WinLangSelection = Read-Host " Select an option and press Enter"
 
 if ($WinLangSelection -eq 'Q') { 
-     Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudUpdateMenu.ps1' 
+     Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1' 
 } Else { 
      Clear-Host
      Update-OSDCloudUSB -OSName $MenuVer.$WinVerSelection -OSLanguage $menuLang.$WinLangSelection -OSLicense Retail
