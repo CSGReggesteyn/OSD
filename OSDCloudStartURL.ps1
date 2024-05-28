@@ -1,4 +1,5 @@
 ### Install OSDCloud module if not present
+<#
 if (Get-InstalledModule -Name OSD -ErrorAction SilentlyContinue) {
     Import-Module OSD
 } else {
@@ -10,6 +11,7 @@ if (Get-InstalledModule -Name OSD -ErrorAction SilentlyContinue) {
     Write-Host
     Install-Module OSD -force
 }
+#>
 
 $MainMenu = {
     Write-Host " ***************************"
