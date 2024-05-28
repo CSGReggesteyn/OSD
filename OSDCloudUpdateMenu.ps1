@@ -28,14 +28,14 @@ $MainMenu = {
     ### Check if OSDCloudUSB drive is found
     if ($disk -eq $null) {
         ### Menu if disk is not found
-        Write-host " OSDCloudUSB drive not found" -ForegroundColor Red
-        Write-host " Check that the partition name matches: OSDCloudUSB" -ForegroundColor Red
+        Write-host " OSDCloudUSB USB niet gevonden" -ForegroundColor Red
+        Write-host " Controleer of de naam van de partitie gelijk is aan: OSDCloudUSB" -ForegroundColor Red
         Write-Host
-        Write-Host " 1.) Install OSDCloudUSB (WinPE)" -nonewline
+        Write-Host " 1.) Installeer OSDCloud op een USB" -nonewline
         Write-Host " $versionWinPE" -ForegroundColor green
-        Write-Host " Q.) Back"
+        Write-Host " Q.) Terug"
         Write-Host
-        Write-Host " Select an option and press Enter: "  -nonewline
+        Write-Host " Selecteer een optie en druk op Enter: "  -nonewline
     } else {
         Write-Host " OSDCloudUSB " -nonewline
         ### Check if OSDCloudUSB version is lower then new version
@@ -57,15 +57,15 @@ $MainMenu = {
         }
         ### Menu if disk is found
         Write-Host
-        Write-Host " 1.) Install OSDCloudUSB (WinPE)" -nonewline
+        Write-Host " 1.) Installeer OSDCloud op een USB" -nonewline
         Write-Host " $versionWinPE" -ForegroundColor green
-        Write-Host " 2.) Update OSDCloudUSB config file" -nonewline
+        Write-Host " 2.) Update OSDCloudUSB configuratie bestand" -nonewline
         Write-Host " $version" -ForegroundColor green
         Write-Host " 3.) Download Windows"
         Write-Host " 4.) Download Drivers"
-        Write-Host " Q.) Back"
+        Write-Host " Q.) Terug"
         Write-Host
-        Write-Host " Select an option and press Enter: "  -nonewline
+        Write-Host " Selecteer een optie en druk op Enter: "  -nonewline
     }
 }
 Clear-Host
