@@ -17,7 +17,7 @@ $MainMenu = {
     Write-Host " *         OSDCloud        *"
     Write-Host " ***************************"
     Write-Host
-    Write-Host " 1.) Start Installatie"
+    Write-Host " 1.) Windows installatie starten"
     Write-Host " 2.) Installeer/Update OSDCloud (Alleen in Windows)"
     Write-Host " Q.) Sluit Powershell"
     Write-Host
