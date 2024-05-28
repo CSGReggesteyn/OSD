@@ -5,9 +5,9 @@ $diskwinpe = Get-WMIObject Win32_Volume | Where-Object { $_.Label -eq 'WinPE' }
 $diskwinpe = $diskwinpe.Name
 
 ### Getting version from .\Update\Version.txt and .\Update\VersionWinPE.txt
-$version = Invoke-WebRequest -Uri https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/Update/Version.txt
+$version = Invoke-WebRequest -Uri https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/Update/Version.txt
 $version = $version.Content.Split([Environment]::NewLine) | Select -First 1
-$versionWinPE = Invoke-WebRequest -Uri https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/Update/VersionWinPE.txt
+$versionWinPE = Invoke-WebRequest -Uri https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/Update/VersionWinPE.txt
 $versionWinPE = $versionWinPE.Content.Split([Environment]::NewLine) | Select -First 1
 
 ### Getting OSDCloudUSB and WinPE version from drive
@@ -75,22 +75,22 @@ Do {
     $Select = Read-Host
     Switch ($Select) {
         1 {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudInstallWinPE.ps1'
+            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudInstallWinPE.ps1'
         }
         2 {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudUSBUpdate.ps1'
+            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUSBUpdate.ps1'
         }
         3 {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudDownloadWindows.ps1'
+            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudDownloadWindows.ps1'
         }
         4 {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudDownloadDriver.ps1'
+            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudDownloadDriver.ps1'
         }
         Q {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudStartURL.ps1'
+            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudStartURL.ps1'
         }
         R {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudUpdateMenu.ps1'
+            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1'
         }
     }
 }
