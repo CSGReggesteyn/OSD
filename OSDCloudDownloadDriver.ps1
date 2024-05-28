@@ -7,9 +7,9 @@ $MainMenu = {
     Write-Host " 2.) Download DELL Drivers"
     Write-Host " 3.) Download Lenovo Drivers"
     Write-Host " 4.) Download Microsoft Drivers"
-    Write-Host " Q.) Back"
+    Write-Host " Q.) Terug"
     Write-Host
-    Write-Host " Select an option and press Enter: "  -nonewline
+    Write-Host " Selecteer een optie en druk op Enter: "  -nonewline
 }
 Clear-Host
 Do {
