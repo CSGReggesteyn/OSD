@@ -40,7 +40,7 @@ if ( $testdisk -eq $null) {
     ### Creating files on de OSDCloud drive
     New-Item -ItemType Directory -Path $location\Automate -force -ErrorAction SilentlyContinue | Out-Null
     Invoke-WebRequest -Uri https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/Update/Automate/Start-OSDCloudGUI.json -OutFile $location\Automate\Start-OSDCloudGUI.json
-    Invoke-WebRequest -Uri https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/Update/Start-Menu.ps1 -OutFile $disk\Start-Menu.ps1
+    Invoke-WebRequest -Uri https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/Update/Start-Menu.ps1 -OutFile $location\Start-Menu.ps1
     New-Item -Path "$location" -Name "$file" -ItemType "file" -Value $version -force -ErrorAction SilentlyContinue | Out-Null
     New-Item -Path "$location" -Name "$fileWinPE" -ItemType "file" -Value $versionWinPE -force -ErrorAction SilentlyContinue | Out-Null
 
