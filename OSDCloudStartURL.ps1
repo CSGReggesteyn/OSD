@@ -18,11 +18,11 @@ $MainMenu = {
     Write-Host " *         OSDCloud        *"
     Write-Host " ***************************"
     Write-Host
-    Write-Host " 1.) OSDCloud Local (WinPE)"
-    Write-Host " 2.) Install/Update OSDCloudUSB (Windows)"
-    Write-Host " Q.) Exit Menu"
+    Write-Host " 1.) Start Installatie"
+    Write-Host " 2.) Installeer/Update OSDCloud (Alleen in Windows)"
+    Write-Host " Q.) Sluit Powershell"
     Write-Host
-    Write-Host " Select an option and press Enter: "  -nonewline
+    Write-Host " Selecteer een optie en druk op Enter: "  -nonewline
 }
 Clear-Host
 Do {
