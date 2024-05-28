@@ -9,7 +9,7 @@ Write-Host " ***************************"
 Write-Host " * OSDCloud Offline Windows*"
 Write-Host " ***************************"
 Write-Host
-Write-Host " Select a Windows version:"
+Write-Host " Selecteer een Windows versie:"
 
 ### Listing Windows versions
 $MenuVer = @{}
@@ -19,9 +19,9 @@ $WinVer | ForEach-Object -Begin {$i = 1} {
      $i++
 }
 
-Write-Host " Q.) Back"
+Write-Host " Q.) Terug"
 
-$WinVerSelection = Read-Host " Select an option and press Enter"
+$WinVerSelection = Read-Host " Selecteer een optie en druk op Enter:"
 
 if ($WinVerSelection -eq 'Q') { 
      Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1' 
@@ -31,7 +31,7 @@ Write-Host " ***************************"
 Write-Host " * OSDCloud Offline Windows*"
 Write-Host " ***************************"
 Write-Host
-Write-Host " Select a Windows language:"
+Write-Host " Selecteer een Taal:"
 
 ### Listing language opties
 $MenuLang = @{}
@@ -41,9 +41,9 @@ $WinLang | ForEach-Object -Begin {$i = 1} {
      $i++
 }
 
-Write-Host " Q.) Back"
+Write-Host " Q.) Terug"
 
-$WinLangSelection = Read-Host " Select an option and press Enter"
+$WinLangSelection = Read-Host " Selecteer een optie en druk op Enter:"
 
 if ($WinLangSelection -eq 'Q') { 
      Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1' 
