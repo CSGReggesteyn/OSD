@@ -1,6 +1,6 @@
 Clear-Host
 Write-Host " ***************************"
-Write-Host " *    WinPE Installation   *"
+Write-Host " *    WinPE Installatie    *"
 Write-Host " ***************************"
 Write-Host
 
@@ -8,12 +8,12 @@ Write-Host
 $testdisk = GET-WMIOBJECT win32_diskdrive | Where { $_.mediatype -eq 'Removable Media' -or $_.mediatype -eq 'Removable Media' -or $_.InterfaceType -eq 'USB' }
 #Option 2: $testdisk2 = Get-Disk | Where-Object -FilterScript {$_.Bustype -Eq "USB"}
 if ( $testdisk -eq $null) {
-    Write-Host "No USB Drive found, going back to menu"
+    Write-Host " Geen USB Stick gevonden"
     Write-Host
     cmd /c 'pause'
     Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1'   
 } else {
-    Write-Host " Downloading WinPE"
+    Write-Host " WinPE aan het downloaden"
     Write-Host
     
     ### Starting WinPE install from Azure Blob and writing the necessary files
@@ -49,14 +49,14 @@ if ( $testdisk -eq $null) {
         Write-Host " *    WinPE Installation   *"
         Write-Host " ***************************"
         Write-Host
-        Write-Host " WinPE Installation complete"
-        Write-Host " Install one more WinPE to a USB drive?"
+        Write-Host " WinPE is geinstalleerd"
+        Write-Host " Wil je nog een USB Stick klaarmaken?"
         Write-Host
-        Write-Host " 1.) Yes (insert new USB drive before continuing)"
-        Write-Host " 2.) No (delete downloaded ISO)"
-        Write-Host " Q.) Back (keeps ISO in Download folder)"
+        Write-Host " 1.) Ja (Plug een nieuwe USB Stick in en ga dan pas door)"
+        Write-Host " 2.) Nee"
+        Write-Host " Q.) Terug (Dit bewaard de ISO in de Downloads folder (Niet geadviseerd))"
         Write-Host
-        Write-Host " Select an option and press Enter: "  -nonewline
+        Write-Host " Selecteer een optie en druk op Enter: "  -nonewline
     }
     Clear-Host
     Do {
