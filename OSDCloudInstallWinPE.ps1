@@ -11,7 +11,7 @@ if ( $testdisk -eq $null) {
     Write-Host "No USB Drive found, going back to menu"
     Write-Host
     cmd /c 'pause'
-    Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudUpdateMenu.ps1'   
+    Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1'   
 } else {
     Write-Host " Downloading WinPE"
     Write-Host
@@ -66,17 +66,17 @@ if ( $testdisk -eq $null) {
         Switch ($Select)
             {
             1 {
-                Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudInstallWinPE.ps1'
+                Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudInstallWinPE.ps1'
             }
             2 {
                 ### Getting the active download folder, Dismounting the image (if mounted) and removing the ISO file
                 $ISOPath = (New-Object -ComObject Shell.Application).Namespace('shell:Downloads').Self.Path
                 Dismount-DiskImage -ImagePath "$ISOPath\OSDCloud_NoPrompt.iso" -ErrorAction SilentlyContinue | Out-Null
                 Remove-Item $ISOPath\OSDCloud_NoPrompt.iso -ErrorAction SilentlyContinue | Out-Null
-                Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudUpdateMenu.ps1'
+                Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1'
             }
             Q {
-                Invoke-WebPSScript 'https://raw.githubusercontent.com/JeffWantsToBattle/OSD/main/OSDCloudUpdateMenu.ps1'
+                Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1'
             }
         }       
     }
