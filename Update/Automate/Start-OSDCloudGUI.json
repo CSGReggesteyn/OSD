@@ -1,0 +1,37 @@
+{
+    "BrandName":  "Reggesteyn",
+    "BrandColor":  "#EB0037",
+    "OSActivation":  "Retail",
+    "OSEdition":  "Pro",
+    "OSLanguage":  "nl-nl",
+    "OSImageIndex":  9,
+    "OSName":  "Windows 11 23H2 x64",
+    "OSReleaseID":  "23H2",
+    "OSVersion":  "Windows 11",
+    "OSActivationValues":  [
+                                "Retail"
+                            ],
+    "OSEditionValues":  [
+                            "Pro"
+                        ],
+    "OSLanguageValues":  [
+                                "nl-nl"
+                            ],
+    "OSNameValues":  [
+                            "Windows 11 23H2 x64",
+                            "Windows 10 22H2 x64"
+                        ],
+    "OSReleaseIDValues":  [
+                                "23H2"
+                            ],
+    "OSVersionValues":  [
+                            "Windows 11",
+                            "Windows 10"
+                        ],
+    "ClearDiskConfirm":  false,
+    "restartComputer":  true,
+    "updateDiskDrivers":  true,
+    "updateFirmware":  false,
+    "updateNetworkDrivers":  true,
+    "updateSCSIDrivers":  true
+}
