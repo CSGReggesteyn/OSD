@@ -1,41 +1,46 @@
-### Search OSDCloud and WinPE disk
-$disk = Get-WMIObject Win32_Volume | Where-Object { $_.Label -eq 'OSDCloudUSB' }
-$disk = $disk.Name
-$diskwinpe = Get-WMIObject Win32_Volume | Where-Object { $_.Label -eq 'WinPE' }
-$diskwinpe = $diskwinpe.Name
+### Search OSDCloud and WinPE partitions
+$disk       = Get-WMIObject Win32_Volume | Where-Object { $_.Label -eq 'OSDCloudUSB' }
+$disk       = $disk.Name
+$diskwinpe  = Get-WMIObject Win32_Volume | Where-Object { $_.Label -eq 'WinPE' }
+$diskwinpe  = $diskwinpe.Name
 
-### Getting version from .\Update\Version.txt and .\Update\VersionWinPE.txt
-$version = Invoke-WebRequest -Uri https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/Update/Version.txt
-$version = $version.Content.Split([Environment]::NewLine) | Select -First 1
-$versionWinPE = Invoke-WebRequest -Uri https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/Update/VersionWinPE.txt
-$versionWinPE = $versionWinPE.Content.Split([Environment]::NewLine) | Select -First 1
+### Getting version from GitHub .\Update\Version.txt and .\Update\VersionWinPE.txt
+$version        = Invoke-WebRequest -Uri "$RepositoryURL/Update/Version.txt"
+$version        = $version.Content.Split([Environment]::NewLine) | Select-Object -First 1
+$versionWinPE   = Invoke-WebRequest -Uri $RepositoryURL/Update/VersionWinPE.txt
+$versionWinPE   = $versionWinPE.Content.Split([Environment]::NewLine) | Select-Object -First 1
 
-### Getting OSDCloudUSB and WinPE version from drive
-$file = "Version.txt"
-$fileWinPE = "VersionWinPE.txt"
-$folder = 'OSDCloud\'
-$location = "$disk$folder"
-$versionondisk = Get-Content "$location$file" -ErrorAction SilentlyContinue
+### Setting file names and locations
+$DownloadsPath  = (New-Object -ComObject Shell.Application).Namespace('shell:Downloads').Self.Path
+$file           = "Version.txt"
+$fileWinPE      = "VersionWinPE.txt"
+$folder         = 'OSDCloud\'
+$location       = "$disk$folder"
+
+### Getting versions from USB drive
+$versionondisk      = Get-Content "$location$file" -ErrorAction SilentlyContinue
 $versionWinPEondisk = Get-Content "$location$fileWinPE" -ErrorAction SilentlyContinue
 
 Clear-Host
 $MainMenu = {
     Write-Host " ***************************"
-    Write-Host " *         OSDCloud        *"
+    Write-Host " *  OSDCloud Update Menu   *"
     Write-Host " ***************************"
     Write-Host
     
     ### Check if OSDCloudUSB drive is found
     if ($disk -eq $null) {
         ### Menu if disk is not found
-        Write-host " OSDCloudUSB USB niet gevonden" -ForegroundColor Red
-        Write-host " Controleer of de naam van de partitie gelijk is aan: OSDCloudUSB" -ForegroundColor Red
+        Write-host " OSDCloudUSB drive not found" -ForegroundColor Red
+        Write-host " Check that the partition name matches: OSDCloudUSB" -ForegroundColor Red
         Write-Host
-        Write-Host " 1.) Installeer OSDCloud op een USB" -nonewline
+        Write-Host " 1.) Install OSDCloudUSB" -nonewline
         Write-Host " $versionWinPE" -ForegroundColor green
-        Write-Host " Q.) Terug"
+        Write-Host " 3.) Make new OSDCloud ISO"
+        Write-Host " 4.) Upload ISO (Downloads\OSDCloud_NoPrompt.iso)"
+        Write-Host " Q.) Back"
         Write-Host
-        Write-Host " Selecteer een optie en druk op Enter: "  -nonewline
+        Write-Host " Select an option and press Enter: "  -nonewline
     } else {
         Write-Host " OSDCloudUSB " -nonewline
         ### Check if OSDCloudUSB version is lower then new version
@@ -57,15 +62,17 @@ $MainMenu = {
         }
         ### Menu if disk is found
         Write-Host
-        Write-Host " 1.) Installeer OSDCloud op een USB" -nonewline
+        Write-Host " 1.) Install OSDCloudUSB" -nonewline
         Write-Host " $versionWinPE" -ForegroundColor green
-        Write-Host " 2.) Update OSDCloudUSB configuratie bestand" -nonewline
+        Write-Host " 2.) Update OSDCloudUSB config file" -nonewline
         Write-Host " $version" -ForegroundColor green
-        Write-Host " 3.) Download Windows"
-        Write-Host " 4.) Download Drivers"
-        Write-Host " Q.) Terug"
+        Write-Host " 3.) Make new OSDCloud ISO"
+        Write-Host " 4.) Upload ISO (Downloads\OSDCloud_NoPrompt.iso)"
+        Write-Host " 5.) Download Windows"
+        Write-Host " 6.) Download Drivers"
+        Write-Host " Q.) Back"
         Write-Host
-        Write-Host " Selecteer een optie en druk op Enter: "  -nonewline
+        Write-Host " Select an option and press Enter: "  -nonewline
     }
 }
 Clear-Host
@@ -75,22 +82,28 @@ Do {
     $Select = Read-Host
     Switch ($Select) {
         1 {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudInstallWinPE.ps1'
+            Invoke-WebPSScript $RepositoryURL/OSDCloudInstallWinPE.ps1
         }
         2 {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUSBUpdate.ps1'
+            Invoke-WebPSScript $RepositoryURL/OSDCloudUSBUpdate.ps1
         }
         3 {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudDownloadWindows.ps1'
+            Invoke-WebPSScript $RepositoryURL/OSDCloudMakeISO.ps1
         }
         4 {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudDownloadDriver.ps1'
+        Invoke-WebPSScript $RepositoryURL/OSDCloudUploadNewISO.ps1
+        }
+        5 {
+            Invoke-WebPSScript $RepositoryURL/OSDCloudDownloadWindows.ps1
+        }
+        6 {
+            Invoke-WebPSScript $RepositoryURL/OSDCloudDownloadDriver.ps1
         }
         Q {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudStartURL.ps1'
+            Invoke-WebPSScript $RepositoryURL/OSDCloudStartURL.ps1
         }
         R {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1'
+            Invoke-WebPSScript $RepositoryURL/OSDCloudUpdateMenu.ps1
         }
     }
 }
