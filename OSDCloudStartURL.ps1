@@ -1,10 +1,15 @@
+### Set the repository and ISO download link
+$RepositoryURL  = 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main'
+$ISOURL         = 'https://osdcloudreg.blob.core.windows.net/osdcloudiso/OSDCloud_NoPrompt.iso'
+
 ### Install OSDCloud module if not present
-if (Get-InstalledModule -Name OSD -ErrorAction SilentlyContinue) {
+#if (Get-InstalledModule -Name OSD) { < Get-InstalledModule can be slow so replaced with Test-Path, need to test in WinPE
+if (Test-Path -Path "$env:ProgramFiles\WindowsPowerShell\Modules\OSD") {
     Write-Host " OSDCloud Module already installed"
-    #Import-Module OSD < slows down the script
 } else {
+    Clear-Host
     Write-Host " ***************************"
-    Write-Host " *         OSDCloud        *"
+    Write-Host " *      OSDCloud Menu      *"
     Write-Host " ***************************"
     Write-Host
     Write-Host " Installing OSDCloud Module"
@@ -14,14 +19,14 @@ if (Get-InstalledModule -Name OSD -ErrorAction SilentlyContinue) {
 
 $MainMenu = {
     Write-Host " ***************************"
-    Write-Host " *         OSDCloud        *"
+    Write-Host " *      OSDCloud Menu      *"
     Write-Host " ***************************"
     Write-Host
-    Write-Host " 1.) Windows installatie starten"
-    Write-Host " 2.) Installeer/Update OSDCloud (Alleen in Windows)"
-    Write-Host " Q.) Sluit Powershell"
+    Write-Host " 1.) OSDCloud Local (WinPE)"
+    Write-Host " 2.) Install/Update OSDCloudUSB (Windows)"
+    Write-Host " Q.) Exit Powershell"
     Write-Host
-    Write-Host " Selecteer een optie en druk op Enter: "  -nonewline
+    Write-Host " Select an option and press Enter: "  -nonewline
 }
 Clear-Host
 Do {
@@ -34,7 +39,7 @@ Do {
             Start-OSDCloudGUI
         }
         2 {
-            Invoke-WebPSScript 'https://raw.githubusercontent.com/CSGReggesteyn/OSD/main/OSDCloudUpdateMenu.ps1'
+            Invoke-WebPSScript $RepositoryURL/OSDCloudUpdateMenu.ps1
         }
         Q {
             Exit
