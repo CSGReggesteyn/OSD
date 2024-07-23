@@ -36,7 +36,7 @@ Do {
     Switch ($Select)
         {
         1 {
-            Start-OSDCloudGUI
+            Invoke-WebPSScript $RepositoryURL/OSDCloudStartAndUpdate.ps1
         }
         2 {
             Invoke-WebPSScript $RepositoryURL/OSDCloudUpdateMenu.ps1
